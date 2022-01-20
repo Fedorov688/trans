@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  trans:
+    build: .
+    image: trans-img
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./data/nltk_data:/root/nltk_data"
+      - "./data/easynmt_v2:/root/.cache/torch/easynmt_v2"
+    command: "uvicorn --host 0.0.0.0 main:app"
+    restart: unless-stopped
